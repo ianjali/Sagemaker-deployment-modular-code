@@ -1,0 +1,32 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  input_file: artifacts/dataset/dataset_mobilefileclassification.csv
+  s3_bucket: "mobileclassificationsagemaker"
+  s3_prefix: "sagemaker/mobile_price_classification/sklearncontainer"
+  train_csv: 'artifacts/dataset/train-V-1.csv'
+  test_csv: 'artifacts/dataset/test-V-1.csv'
+
+model_trainer:
+  framework_version: 0.23-1
+  sagemaker_entry_point: src/MobilePriceClassification/components/script.py
+  instance_type: 'ml.m5.large'
+  base_job_name: 'RF-custom-sklearn'
+  use_spot_instance: True
+  n_estimators: 100
+  random_state: 0
+
+model_deploy:
+  framework_version: 0.23-1
+  instance_type: 'ml.m4.xlarge'
+  model_deploy_endpoint: custom-sklearn-model-endpoint
+  model_deploy_name: custom-sklearn-model-deploy
+  sagemaker_entry_point: src/MobilePriceClassification/components/script.py
+
+model_inference:
+  endpoint_name: custom-sklearn-model-endpoint
+  test_path : artifacts/dataset/test-V-1.csv
+
+
+  
+

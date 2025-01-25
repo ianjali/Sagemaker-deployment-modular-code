@@ -178,7 +178,8 @@ def model_fn(model_dir):
     Returns:
         RandomForestClassifier: Loaded model
     """
-    return joblib.load(os.path.join(model_dir, "model.joblib"))
+    print(model_dir)
+    clf= joblib.load(os.path.join(model_dir, "model.joblib"))
 
 if __name__ == "__main__":
     main()

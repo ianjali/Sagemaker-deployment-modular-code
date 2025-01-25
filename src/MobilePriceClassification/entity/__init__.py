@@ -3,6 +3,7 @@ from pathlib import Path
 import boto3
 import sagemaker
 import os
+from src.MobilePriceClassification.logging import logger
 @dataclass
 class DataIngestionConfig:
     input_file: Path
@@ -41,3 +42,33 @@ class ModelTrainerConfig:
             self.train_path = os.environ.get('S3_TRAIN_PATH')
         if self.test_path is None:
             self.test_path = os.environ.get('S3_TEST_PATH')
+            
+@dataclass          
+class ModelDeployConfig:
+    instance_type:str
+    framework_version: str
+    sagemaker_entry_point:str
+    model_deploy_endpoint:str
+    model_deploy_name:str
+    sm_boto3: sagemaker.Session = None
+    artifact: str=None
+    role: str = None
+    def __post_init__(self):
+        if self.sm_boto3 is None:
+            self.sm_boto3 = sagemaker.Session()
+        if self.artifact is None:
+            self.artifact = os.environ.get('S3_MODEL')
+        if self.role is None:
+            self.role = os.environ.get('AWS_SAGEMAKER_ROLE')
+
+@dataclass          
+class ModelInferenceConfig:
+    test_path:Path
+    endpoint_name:str
+    sm_boto3: boto3.client = None
+    def __post_init__(self):
+        if self.sm_boto3 is None:
+            self.sm_boto3 = boto3.client('sagemaker')
+    
+    
+    

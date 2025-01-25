@@ -10,4 +10,5 @@ class ModelTrainerPipeline:
         model_trainer_config = config.get_model_trainer_config()
         model_trainer=ModelTrainer(config=model_trainer_config)
         model_trainer.create_sagemaker_entry_point()
-        model_trainer.train()
+        artifact = model_trainer.train()
+        return artifact

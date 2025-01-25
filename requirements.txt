@@ -3,5 +3,6 @@ scikit-learn
 pandas
 numpy
 ipykernel
-python-box==6.0.2
-ensure==1.0.2
+python-box
+ensure
+sagemaker-training==4.0.1
