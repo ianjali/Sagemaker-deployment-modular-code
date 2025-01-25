@@ -33,7 +33,7 @@ class ModelTrainerConfig:
     train_path: str = None
     test_path: str = None
     role: str = None
-    
+    sm_boto3: boto3.client = None
     def __post_init__(self):
         # Initialize role and s3 bucket path if not provided
         if self.role is None:
@@ -42,6 +42,8 @@ class ModelTrainerConfig:
             self.train_path = os.environ.get('S3_TRAIN_PATH')
         if self.test_path is None:
             self.test_path = os.environ.get('S3_TEST_PATH')
+        if self.sm_boto3 is None:
+            self.sm_boto3 = boto3.client('sagemaker')
             
 @dataclass          
 class ModelDeployConfig:

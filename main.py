@@ -29,7 +29,7 @@ try:
 except Exception as e:
     logger.exception(f"stage {STAGE_NAME} failed : {str(e)}")
     raise e
-
+logger.info(f"Model artifact saved at: {artifact}")
 STAGE_NAME="Model Deployment stage"
 #deploy model and create an endpoint
 try:

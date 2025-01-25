@@ -31,7 +31,8 @@ class ModelTrainer:
         self.sklearn_estimator.fit({"train": self.config.train_path, "test": self.config.test_path}, wait=True)
         #ensure training job is completed
         self.sklearn_estimator.latest_training_job.wait(logs="None")
-        artifact = sagemaker.Session().describe_training_job(
+        logger.info(self.config)
+        artifact = self.config.sm_boto3.describe_training_job(
                     TrainingJobName=self.sklearn_estimator.latest_training_job.name
                     )["ModelArtifacts"]["S3ModelArtifacts"]
         logger.info("Training job completed and model artifact saved")
