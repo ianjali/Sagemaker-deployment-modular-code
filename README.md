@@ -26,7 +26,7 @@ git clone https://github.com/yourusername/your-repository.git
 Set up AWS CLI:
 👉 [Getting Started with AWS CLI](https://medium.com/@mudgal.anjali.am/getting-started-with-aws-cli-your-complete-setup-guide-9d96a399e950)
 
-
+```
 Project Structure
 your-repository/
 │
@@ -77,7 +77,7 @@ your-repository/
 ├── requirements.txt       # Dependencies for the project
 ├── README.md              # Project documentation
 └── .gitignore             # Git ignore file
-
+```
 
 
 
