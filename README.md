@@ -3,6 +3,7 @@
 This repository provides an end-to-end pipeline for deploying machine learning models on AWS SageMaker, from data ingestion to model inferencing.
 
 For a step-by-step understanding, refer to my Medium article [Deploying Machine Learning Models on Amazon SageMaker](https://medium.com/@mudgal.anjali.am/deploying-machine-learning-models-on-amazon-sagemaker-a-comprehensive-guide-adb72b3b95b0)
+
 What’s Covered in This Pipeline? 🚀
 1. **Data Ingestion** 📥
 Upload dataset to Amazon S3 for training and testing.
